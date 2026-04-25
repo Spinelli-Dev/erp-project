@@ -1,4 +1,4 @@
-# 🍝 ERP Maxxi Massas
+# 🍝 ERP Maxi Massas
 
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
 ![Version](https://img.shields.io/badge/version-0.1-blue)
@@ -8,7 +8,7 @@
 
 ## 📌 Sobre o Projeto
 
-O **ERP Maxxi Massas** é um sistema de gestão empresarial desenvolvido para auxiliar no controle completo de operações comerciais, incluindo clientes, vendas, estoque e financeiro.
+O **ERP Maxi Massas** é um sistema de gestão empresarial desenvolvido para auxiliar no controle completo de operações comerciais, incluindo clientes, vendas, estoque e financeiro.
 
 O projeto está sendo desenvolvido com foco em organização, boas práticas de desenvolvimento e colaboração em equipe.
 

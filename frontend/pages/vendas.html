@@ -29,11 +29,8 @@
 
     <main class="conteudo-pagina flex-grow-1">
 
-        <!-- BREAKPOINT - AJUSTE CONTADOR DE VENDAS -->
-
         <header class="mb-4 position-relative">
             
-            <!-- O container do título e contador no mobile deve ocupar 100% (w-100) e espaçar as pontas (justify-content-between) -->
             <div class="d-flex align-items-center justify-content-between w-100">
                 <h2 class="titulo-pagina mb-0">Vendas</h2>
                 
@@ -43,7 +40,7 @@
                 </div>
             </div>
 
-            <!-- Direita Desktop: A data fica absolutamente posicionada à direita para não quebrar a linha do título -->
+            <!-- Data alinhad a direita do título -->
             <div class="d-none d-md-block position-absolute end-0 top-0">
                 <span id="data-atual" class="data-pagina"></span>
             </div>
@@ -118,43 +115,253 @@
         <!-- VERSÃO DESKTOP (TABELA) -->
         <!-- ========================================== -->
         <div class="table-responsive d-none d-lg-block mb-4">
-    <table class="tabela-produtos tabela-clientes w-100">
-        <thead>
-            <tr>
-                <th class="respiro-esq">Pedido <span>↕</span></th>
-                <th class="coluna-ordenavel">Nome <span>↕</span></th>
-                <th>Telefone</th>
-                <th class="coluna-ordenavel">Data <span>↕</span></th>
-                <th>Hora</th>
-                <th>Produtos</th>
-                <th>Qtd</th>
-                <th>Entrega</th>
-                <th>Desconto</th>
-                <th>Valor Pago</th>
-                <th>Pagamento</th>
-                <th>Plataforma</th>
-                <th class="coluna-ordenavel">Status <span>↕</span></th>
-                <th class="text-center">Editar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td class="respiro-esq"><div class="col-venda">1</div></td><td class="col-nome">Maria Fernanda Costa</td><td>(16) 9 9876-5432</td><td>25/04/2026</td><td>11:30</td><td>Sofioli Brócolis e Mussarela</td><td>1</td><td>Retirada</td><td>R$ 7,85</td><td>R$ 120,15</td><td>Cartão Crédito</td><td>UAI Rango</td><td class="status-venda-text">Pendente Pagamento</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1001)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">1</div></td><td class="col-nome">Maria Fernanda Costa</td><td>(16) 9 9876-5432</td><td>25/04/2026</td><td>11:30</td><td>Molho Branco</td><td>3</td><td>Retirada</td><td>R$ 7,85</td><td>R$ 120,15</td><td>Cartão Crédito</td><td>UAI Rango</td><td class="status-venda-text">Pendente Pagamento</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1001)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">1</div></td><td class="col-nome">Maria Fernanda Costa</td><td>(16) 9 9876-5432</td><td>25/04/2026</td><td>11:30</td><td>Queijo Ralado</td><td>4</td><td>Retirada</td><td>R$ 7,85</td><td>R$ 120,15</td><td>Cartão Crédito</td><td>UAI Rango</td><td class="status-venda-text">Pendente Pagamento</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1001)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">2</div></td><td class="col-nome">João Paulo Souza</td><td>(16) 9 8765-4321</td><td>25/04/2026</td><td>14:25</td><td>Canelone Frango e Requeijão</td><td>2</td><td>Entrega</td><td>R$ —</td><td>R$ 89,99</td><td>PIX</td><td>Indicação</td><td class="status-venda-text">Concluído</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1002)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">2</div></td><td class="col-nome">João Paulo Souza</td><td>(16) 9 8765-4321</td><td>25/04/2026</td><td>14:25</td><td>Refrigerante Guaraná</td><td>1</td><td>Entrega</td><td>R$ —</td><td>R$ 89,99</td><td>PIX</td><td>Indicação</td><td class="status-venda-text">Concluído</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1002)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">3</div></td><td class="col-nome">Ana Claudia Ribeiro</td><td>(16) 9 7654-3210</td><td>25/04/2026</td><td>12:00</td><td>Conchiglione 4 Queijos</td><td>1</td><td>Entrega</td><td>R$ 4,99</td><td>R$ 35,00</td><td>Dinheiro</td><td>Instagram</td><td class="status-venda-text">Agendado</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1003)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">4</div></td><td class="col-nome">Carlos Eduardo Lima</td><td>(16) 9 6543-2109</td><td>24/04/2026</td><td>14:25</td><td>Refrigerante Guaraná</td><td>1</td><td>Retirada</td><td>R$ —</td><td>R$ —</td><td>Cartão Débito</td><td>WhatsApp</td><td class="status-venda-text">Cancelado</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1004)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">4</div></td><td class="col-nome">Carlos Eduardo Lima</td><td>(16) 9 6543-2109</td><td>24/04/2026</td><td>14:25</td><td>Nhoque Mussarela</td><td>1</td><td>Retirada</td><td>R$ —</td><td>R$ —</td><td>Cartão Débito</td><td>WhatsApp</td><td class="status-venda-text">Cancelado</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1004)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">5</div></td><td class="col-nome">Fernanda Oliveira</td><td>(16) 9 5432-1098</td><td>24/04/2026</td><td>12:00</td><td>Conchiglione 4 Queijos</td><td>1</td><td>Entrega</td><td>R$ 4,99</td><td>R$ 96,00</td><td>Cartão Débito</td><td>Facebook</td><td class="status-venda-text">Agendado</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1005)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">5</div></td><td class="col-nome">Fernanda Oliveira</td><td>(16) 9 5432-1098</td><td>24/04/2026</td><td>12:00</td><td>Nhoque 4 Queijos</td><td>1</td><td>Entrega</td><td>R$ 4,99</td><td>R$ 96,00</td><td>Cartão Débito</td><td>Facebook</td><td class="status-venda-text">Agendado</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1005)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">6</div></td><td class="col-nome">Roberto Alves Santos</td><td>(16) 9 4321-0987</td><td>23/04/2026</td><td>18:30</td><td>Sofioli Brócolis e Mussarela</td><td>2</td><td>Entrega</td><td>R$ 12,66</td><td>R$ 82,00</td><td>Cartão Crédito</td><td>Outros</td><td class="status-venda-text">Concluído</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1006)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">6</div></td><td class="col-nome">Roberto Alves Santos</td><td>(16) 9 4321-0987</td><td>23/04/2026</td><td>18:30</td><td>Nhoque Presunto e Mussarela</td><td>1</td><td>Entrega</td><td>R$ 12,66</td><td>R$ 82,00</td><td>Cartão Crédito</td><td>Outros</td><td class="status-venda-text">Concluído</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1006)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">7</div></td><td class="col-nome">Patricia Gomes Silva</td><td>(16) 9 3210-9876</td><td>23/04/2026</td><td>12:00</td><td>Nhoque 4 Queijos</td><td>3</td><td>Entrega</td><td>R$ 4,99</td><td>R$ 96,00</td><td>Cartão Débito</td><td>Facebook</td><td class="status-venda-text">Concluído</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1007)" alt="Editar"></button></td></tr>
-            <tr><td class="respiro-esq"><div class="col-venda">8</div></td><td class="col-nome">Beatriz Souza Lima</td><td>(16) 9 1098-7654</td><td>23/04/2026</td><td>15:00</td><td>Conchiglione 4 Queijos</td><td>1</td><td>Entrega</td><td>R$ 4,99</td><td>R$ 96,00</td><td>Cartão Débito</td><td>Facebook</td><td class="status-venda-text">Concluído</td><td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1008)" alt="Editar"></button></td></tr>
-        </tbody>
-    </table>
-</div>
+            <table class="tabela-produtos tabela-clientes w-100">
+                <thead>
+                    <tr>
+                        <th class="respiro-esq">Pedido <span>↕</span></th>
+                        <th class="coluna-ordenavel">Nome <span>↕</span></th>
+                        <th>Telefone</th>
+                        <th class="coluna-ordenavel">Data <span>↕</span></th>
+                        <th>Hora</th>
+                        <th>Produtos</th>
+                        <th>Qtd</th>
+                        <th>Entrega</th>
+                        <th>Desconto</th>
+                        <th>Valor Pago</th>
+                        <th>Pagamento</th>
+                        <th>Plataforma</th>
+                        <th class="coluna-ordenavel">Status <span>↕</span></th>
+                        <th class="text-center">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">1</div></td>
+                        <td class="col-nome">Maria Fernanda Costa</td>
+                        <td>(16) 9 9876-5432</td>
+                        <td>25/04/2026</td>
+                        <td>11:30</td>
+                        <td>Sofioli Brócolis e Mussarela</td>
+                        <td>1</td>
+                        <td>Retirada</td>
+                        <td>R$ 7,85</td>
+                        <td>R$ 120,15</td>
+                        <td>Cartão Crédito</td>
+                        <td>UAI Rango</td>
+                        <td class="status-venda-text">Pendente Pagamento</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1001)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">1</div></td>
+                        <td class="col-nome">Maria Fernanda Costa</td>
+                        <td>(16) 9 9876-5432</td>
+                        <td>25/04/2026</td>
+                        <td>11:30</td>
+                        <td>Molho Branco</td>
+                        <td>3</td>
+                        <td>Retirada</td>
+                        <td>R$ 7,85</td>
+                        <td>R$ 120,15</td>
+                        <td>Cartão Crédito</td>
+                        <td>UAI Rango</td>
+                        <td class="status-venda-text">Pendente Pagamento</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1001)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">1</div></td>
+                        <td class="col-nome">Maria Fernanda Costa</td>
+                        <td>(16) 9 9876-5432</td>
+                        <td>25/04/2026</td>
+                        <td>11:30</td>
+                        <td>Queijo Ralado</td>
+                        <td>4</td>
+                        <td>Retirada</td>
+                        <td>R$ 7,85</td>
+                        <td>R$ 120,15</td>
+                        <td>Cartão Crédito</td>
+                        <td>UAI Rango</td>
+                        <td class="status-venda-text">Pendente Pagamento</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1001)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">2</div></td>
+                        <td class="col-nome">João Paulo Souza</td>
+                        <td>(16) 9 8765-4321</td>
+                        <td>25/04/2026</td>
+                        <td>14:25</td>
+                        <td>Canelone Frango e Requeijão</td>
+                        <td>2</td>
+                        <td>Entrega</td>
+                        <td>R$ —</td>
+                        <td>R$ 89,99</td>
+                        <td>PIX</td>
+                        <td>Indicação</td>
+                        <td class="status-venda-text">Concluído</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1002)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">2</div></td>
+                        <td class="col-nome">João Paulo Souza</td>
+                        <td>(16) 9 8765-4321</td>
+                        <td>25/04/2026</td>
+                        <td>14:25</td>
+                        <td>Refrigerante Guaraná</td>
+                        <td>1</td>
+                        <td>Entrega</td>
+                        <td>R$ —</td>
+                        <td>R$ 89,99</td>
+                        <td>PIX</td>
+                        <td>Indicação</td>
+                        <td class="status-venda-text">Concluído</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1002)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">3</div></td>
+                        <td class="col-nome">Ana Claudia Ribeiro</td>
+                        <td>(16) 9 7654-3210</td>
+                        <td>25/04/2026</td>
+                        <td>12:00</td>
+                        <td>Conchiglione 4 Queijos</td>
+                        <td>1</td>
+                        <td>Entrega</td>
+                        <td>R$ 4,99</td>
+                        <td>R$ 35,00</td>
+                        <td>Dinheiro</td>
+                        <td>Instagram</td>
+                        <td class="status-venda-text">Agendado</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1003)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">4</div></td>
+                        <td class="col-nome">Carlos Eduardo Lima</td>
+                        <td>(16) 9 6543-2109</td>
+                        <td>24/04/2026</td>
+                        <td>14:25</td>
+                        <td>Refrigerante Guaraná</td>
+                        <td>1</td>
+                        <td>Retirada</td>
+                        <td>R$ —</td>
+                        <td>R$ —</td>
+                        <td>Cartão Débito</td>
+                        <td>WhatsApp</td>
+                        <td class="status-venda-text">Cancelado</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1004)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">4</div></td>
+                        <td class="col-nome">Carlos Eduardo Lima</td>
+                        <td>(16) 9 6543-2109</td>
+                        <td>24/04/2026</td>
+                        <td>14:25</td>
+                        <td>Nhoque Mussarela</td>
+                        <td>1</td>
+                        <td>Retirada</td>
+                        <td>R$ —</td>
+                        <td>R$ —</td>
+                        <td>Cartão Débito</td>
+                        <td>WhatsApp</td>
+                        <td class="status-venda-text">Cancelado</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1004)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">5</div></td>
+                        <td class="col-nome">Fernanda Oliveira</td>
+                        <td>(16) 9 5432-1098</td>
+                        <td>24/04/2026</td>
+                        <td>12:00</td>
+                        <td>Conchiglione 4 Queijos</td>
+                        <td>1</td>
+                        <td>Entrega</td>
+                        <td>R$ 4,99</td>
+                        <td>R$ 96,00</td>
+                        <td>Cartão Débito</td>
+                        <td>Facebook</td>
+                        <td class="status-venda-text">Agendado</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1005)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">5</div></td>
+                        <td class="col-nome">Fernanda Oliveira</td>
+                        <td>(16) 9 5432-1098</td>
+                        <td>24/04/2026</td>
+                        <td>12:00</td>
+                        <td>Nhoque 4 Queijos</td>
+                        <td>1</td>
+                        <td>Entrega</td>
+                        <td>R$ 4,99</td>
+                        <td>R$ 96,00</td>
+                        <td>Cartão Débito</td>
+                        <td>Facebook</td>
+                        <td class="status-venda-text">Agendado</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1005)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">6</div></td>
+                        <td class="col-nome">Roberto Alves Santos</td>
+                        <td>(16) 9 4321-0987</td>
+                        <td>23/04/2026</td>
+                        <td>18:30</td>
+                        <td>Sofioli Brócolis e Mussarela</td>
+                        <td>2</td>
+                        <td>Entrega</td>
+                        <td>R$ 12,66</td>
+                        <td>R$ 82,00</td>
+                        <td>Cartão Crédito</td>
+                        <td>Outros</td>
+                        <td class="status-venda-text">Concluído</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1006)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">6</div></td>
+                        <td class="col-nome">Roberto Alves Santos</td>
+                        <td>(16) 9 4321-0987</td>
+                        <td>23/04/2026</td>
+                        <td>18:30</td>
+                        <td>Nhoque Presunto e Mussarela</td>
+                        <td>1</td>
+                        <td>Entrega</td>
+                        <td>R$ 12,66</td>
+                        <td>R$ 82,00</td>
+                        <td>Cartão Crédito</td>
+                        <td>Outros</td>
+                        <td class="status-venda-text">Concluído</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1006)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">7</div></td>
+                        <td class="col-nome">Patricia Gomes Silva</td>
+                        <td>(16) 9 3210-9876</td>
+                        <td>23/04/2026</td>
+                        <td>12:00</td>
+                        <td>Nhoque 4 Queijos</td>
+                        <td>3</td>
+                        <td>Entrega</td>
+                        <td>R$ 4,99</td>
+                        <td>R$ 96,00</td>
+                        <td>Cartão Débito</td>
+                        <td>Facebook</td>
+                        <td class="status-venda-text">Concluído</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1007)" alt="Editar"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="respiro-esq"><div class="col-venda">8</div></td>
+                        <td class="col-nome">Beatriz Souza Lima</td>
+                        <td>(16) 9 1098-7654</td>
+                        <td>23/04/2026</td>
+                        <td>15:00</td>
+                        <td>Conchiglione 4 Queijos</td>
+                        <td>1</td>
+                        <td>Entrega</td>
+                        <td>R$ 4,99</td>
+                        <td>R$ 96,00</td>
+                        <td>Cartão Débito</td>
+                        <td>Facebook</td>
+                        <td class="status-venda-text">Concluído</td>
+                        <td class="text-center"><button class="btn-icone"><img src="../assets/icons/icone-edicao.svg" onclick="editarVenda(1008)" alt="Editar"></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <!-- ========================================== -->
         <!-- VERSÃO MOBILE (CARDS AGRUPADOS POR VENDA) -->
@@ -301,7 +508,7 @@
     <!-- MODAL: CONSUMO PRÓPRIO                     -->
     <!-- ========================================== -->
     <div class="modal fade" id="modalConsumoProprio" tabindex="-1" aria-hidden="true">
-        <!-- Mantemos os 600px e o modal-dialog-bottom para seguir o padrão -->
+        <!-- 600px de largura e o modal-dialog-bottom para seguir o padrão -->
         <div class="modal-dialog modal-dialog-centered modal-dialog-bottom" style="max-width: 600px;">
             <div class="modal-content modal-custom-content">
                 
@@ -313,7 +520,7 @@
                     <form id="formConsumoProprio">
                         <div class="row row-gap-custom m-0">
                             
-                            <!-- Campo de Busca c/ Dropdown Flutuante -->
+                            <!-- Campo de Busca com Dropdown Flutuante -->
                             <div class="col-12 p-0 position-relative">
                                 <p style="color: #6B7380; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; margin-bottom: 8px;">
                                     Digite o nome do produto para registrar consumo próprio.
@@ -321,7 +528,7 @@
 
                                 <div class="search-wrapper w-100">
                                     <img src="../assets/icons/icone-pesquisar.svg" class="search-icon" alt="Lupa">
-                                    <!-- autocomplete="off" evita que o navegador coloque o histórico nativo por cima do nosso -->
+                                    <!-- autocomplete="off" evita que o navegador coloque o histórico nativo por cima -->
                                     <input type="text" class="search-input w-100" id="buscaProdutoConsumo" placeholder="Digite o produto..." autocomplete="off">
                                 </div>
                                 <!-- Lista onde o JS vai injetar os resultados -->

@@ -71,6 +71,259 @@ function verificarEstoqueCores() {
 // #endregion
 
 
+/* 
+============================================================================================================================== 
+        TELA: VENDAS
+============================================================================================================================== 
+*/
+// #region - CORES AUTOMÁTICAS: STATUS DE VENDAS
+function aplicarCoresStatusVendas() {
+    const statusElementos = document.querySelectorAll('.status-venda-text');
+    if (statusElementos.length === 0) return;
+
+    statusElementos.forEach(elemento => {
+        const textoStatus = elemento.textContent.trim().toLowerCase();
+        
+        elemento.classList.remove('status-venda-concluido', 'status-venda-agendado', 'status-venda-pendente', 'status-venda-cancelado');
+
+        if (textoStatus === 'concluído') {
+            elemento.classList.add('status-venda-concluido');
+        } else if (textoStatus === 'agendado') {
+            elemento.classList.add('status-venda-agendado');
+        } else if (textoStatus.includes('pendente')) { 
+            // Usa 'includes' para pegar tanto "Pendente" quanto "Pendente Pagamento"
+            elemento.classList.add('status-venda-pendente');
+        } else if (textoStatus === 'cancelado') {
+            elemento.classList.add('status-venda-cancelado');
+        }
+    });
+}
+// #endregion
+
+// #region - FILTRO DA TELA DE VENDAS
+function configurarFiltrosVendas() {
+    const buscaInput = document.getElementById('buscaVenda');
+    const filtroMes = document.getElementById('filtroMesVendas');
+    const filtroAno = document.getElementById('filtroAnoVendas');
+    const filtroProduto = document.getElementById('filtroProdutoVendas');
+    const filtroStatus = document.getElementById('filtroStatusVendas');
+
+    if (!buscaInput || !filtroMes || !filtroAno || !filtroProduto || !filtroStatus) return;
+
+    function filtrarVendas() {
+        const termoBusca = buscaInput.value.toLowerCase().trim();
+        const mesSelecionado = filtroMes.value; 
+        const anoSelecionado = filtroAno.value; 
+        const produtoSelecionado = filtroProduto.value.toLowerCase();
+        const statusSelecionado = filtroStatus.value.toLowerCase(); 
+
+        // 1. Filtrar Tabela (Desktop)
+        const linhas = document.querySelectorAll('.tabela-produtos tbody tr');
+        
+        linhas.forEach(linha => {
+            if(linha.cells.length < 13) return; 
+
+            // Textos para buscar no input livre (Nome e Telefone)
+            const nomeTel = (linha.cells[1].textContent + " " + linha.cells[2].textContent).toLowerCase();
+            
+            // Coluna de Produtos (índice 5)
+            const produtosLinha = linha.cells[5].textContent.toLowerCase();
+            
+            // Data (índice 3)
+            const partesData = linha.cells[3].textContent.trim().split('/');
+            const mesLinha = partesData[1];
+            const anoLinha = partesData[2];
+
+            // Status (penúltima coluna)
+            const statusLinha = linha.querySelector('.status-venda-text').textContent.toLowerCase();
+
+            const passaBusca = termoBusca === "" || nomeTel.includes(termoBusca);
+            const passaMes = mesSelecionado === "" || mesLinha === mesSelecionado;
+            const passaAno = anoSelecionado === "" || anoLinha === anoSelecionado;
+            // Se o produto selecionado for "Molho", a linha "Molho Branco" passa porque contém a palavra.
+            const passaProduto = produtoSelecionado === "" || produtosLinha.includes(produtoSelecionado);
+            
+            // Para o status pendente que tem 2 nomes
+            let passaStatus = false;
+            if(statusSelecionado === "") {
+                passaStatus = true;
+            } else if (statusSelecionado === "pendente" && statusLinha.includes("pendente")) {
+                passaStatus = true;
+            } else {
+                passaStatus = statusLinha === statusSelecionado;
+            }
+
+            linha.style.display = (passaBusca && passaMes && passaAno && passaProduto && passaStatus) ? '' : 'none';
+        });
+
+        // 2. Filtrar Cards (Mobile) - Nos cards agrupados a lógica é mais simples pois não temos o produto visível no resumo
+        const cards = document.querySelectorAll('.card-venda');
+        
+        cards.forEach(card => {
+            const textoCard = card.textContent.toLowerCase();
+            const statusCard = card.querySelector('.status-venda-text').textContent.toLowerCase();
+
+            const passaBusca = termoBusca === "" || textoCard.includes(termoBusca);
+            
+            let passaStatus = false;
+            if(statusSelecionado === "") {
+                passaStatus = true;
+            } else if (statusSelecionado === "pendente" && statusCard.includes("pendente")) {
+                passaStatus = true;
+            } else {
+                passaStatus = statusCard === statusSelecionado;
+            }
+
+            // Nota: Filtros de Mês, Ano e Produto não afetam os cards agregados pois essas infos precisariam estar atreladas via Data-Attributes no card
+            card.style.display = (passaBusca && passaStatus) ? 'flex' : 'none';
+        });
+    }
+
+    buscaInput.addEventListener('input', filtrarVendas);
+    filtroMes.addEventListener('change', filtrarVendas);
+    filtroAno.addEventListener('change', filtrarVendas);
+    filtroProduto.addEventListener('change', filtrarVendas);
+    filtroStatus.addEventListener('change', filtrarVendas);
+}
+// #endregion
+
+// #region - MODAL CONSUMO PRÓPRIO (AUTOCOMPLETE)
+function configurarModalConsumoProprio() {
+    const buscaInput = document.getElementById('buscaProdutoConsumo');
+    const dropdown = document.getElementById('dropdownConsumo');
+    
+    if (!buscaInput || !dropdown) return;
+
+    // 1. Simulação do Banco de Dados (Dados idênticos aos da tabela de Produtos)
+    const bancoDeProdutos = [
+        { nome: 'Canelone', sabor: '4 Queijos', peso: '700g', custo: 'R$ 21,90' },
+        { nome: 'Canelone', sabor: 'Brócolis e Mussarela', peso: '700g', custo: 'R$ 18,90' },
+        { nome: 'Canelone', sabor: 'Frango e Requeijão', peso: '700g', custo: 'R$ 18,90' },
+        { nome: 'Massa de Lasanha', sabor: 'Tradicional', peso: '500g', custo: 'R$ 7,00' },
+        { nome: 'Sofioli', sabor: '4 Queijos', peso: '700g', custo: 'R$ 21,90' },
+        { nome: 'Sofioli', sabor: 'Brócolis e Mussarela', peso: '700g', custo: 'R$ 18,90' },
+        { nome: 'Sofioli', sabor: 'Frango e Requeijão', peso: '700g', custo: 'R$ 18,90' },
+        { nome: 'Sofioli', sabor: 'Presunto e Mussarela', peso: '700g', custo: 'R$ 18,90' },
+        { nome: 'Molho', sabor: 'Tomate Tradicional', peso: '300g', custo: 'R$ 1,10' },
+        { nome: 'Molho', sabor: 'Branco', peso: '240g', custo: 'R$ 3,02' },
+        { nome: 'Molho', sabor: 'Especial Sacciali Arrabiata', peso: '530g', custo: 'R$ 9,60' },
+        { nome: 'Queijo Ralado', sabor: 'Tradicional', peso: '40g', custo: 'R$ 2,79' }
+    ];
+
+    // 2. Evento disparado a cada tecla digitada
+    buscaInput.addEventListener('input', function() {
+        const termo = this.value.toLowerCase().trim();
+        dropdown.innerHTML = ''; // Limpa a lista
+        
+        // Se apagar o campo, esconde a lista e limpa o formulário
+        if (termo === '') {
+            dropdown.classList.add('d-none');
+            limparCamposConsumo();
+            return;
+        }
+
+        // Filtra os produtos
+        const filtrados = bancoDeProdutos.filter(p => {
+            const termoCompleto = (p.nome + " " + p.sabor).toLowerCase();
+            return termoCompleto.includes(termo);
+        });
+
+        // 3. Monta o visual do dropdown
+        if (filtrados.length > 0) {
+            filtrados.forEach(produto => {
+                const li = document.createElement('li');
+                li.className = 'autocomplete-item';
+                
+                const spanNome = document.createElement('span');
+                spanNome.className = 'auto-nome';
+                // Junta nome e sabor (ex: Sofioli 4 Queijos)
+                const tituloCompleto = produto.sabor !== 'Tradicional' && produto.sabor !== '' 
+                    ? `${produto.nome} ${produto.sabor}` 
+                    : produto.nome;
+                spanNome.textContent = tituloCompleto;
+
+                const spanDetalhes = document.createElement('span');
+                spanDetalhes.className = 'auto-detalhes';
+                // Adiciona a bolinha separadora no HTML (•)
+                spanDetalhes.innerHTML = `${produto.peso} &nbsp;&bull;&nbsp; Custo: ${produto.custo}`;
+
+                li.appendChild(spanNome);
+                li.appendChild(spanDetalhes);
+
+                // Ação de selecionar o item
+                li.addEventListener('click', () => selecionarProduto(produto, tituloCompleto));
+
+                dropdown.appendChild(li);
+            });
+            dropdown.classList.remove('d-none'); // Mostra a lista
+        } else {
+            dropdown.classList.add('d-none');
+        }
+    });
+
+    // 4. Esconder dropdown se clicar fora dele
+    document.addEventListener('click', (e) => {
+        if (!buscaInput.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.add('d-none');
+        }
+    });
+
+    // 5. Preencher campos automáticos (Mantive no "value" mas deixei o input "readonly" no HTML para UX perfeita)
+    function selecionarProduto(produto, tituloCompleto) {
+        document.getElementById('inputConsumoNome').value = produto.nome;
+        document.getElementById('inputConsumoSabor').value = produto.sabor === 'Tradicional' || produto.sabor === '' ? '—' : produto.sabor;
+        document.getElementById('inputConsumoPeso').value = produto.peso;
+        
+        buscaInput.value = tituloCompleto; // Fixa o nome na barra de busca
+        dropdown.classList.add('d-none'); // Fecha a lista
+    }
+
+    function limparCamposConsumo() {
+        document.getElementById('inputConsumoNome').value = '';
+        document.getElementById('inputConsumoSabor').value = '';
+        document.getElementById('inputConsumoPeso').value = '';
+    }
+
+    // 6. Resetar o modal ao abrir
+    const modalElement = document.getElementById('modalConsumoProprio');
+    modalElement.addEventListener('show.bs.modal', () => {
+        document.getElementById('formConsumoProprio').reset();
+        limparCamposConsumo();
+        dropdown.classList.add('d-none');
+    });
+}
+// #endregion
+
+// #region
+// SIMULAÇÃO: Abrir Venda para Edição a partir da Tabela/Cards
+function editarVenda(idVenda) {
+    // 1. Simula a busca no banco de dados (MySQL) de uma venda existente
+    const vendaSimulada = {
+        id: idVenda,
+        cliente: { id: 1, nome: 'Maria Fernanda Costa', tel: '(16) 9 9876-5432', rua: 'Rua das Flores', num: '142', bairro: 'Jardim Europa', cid: 'Itápolis', uf: 'SP', comp: '' },
+        itens: [
+            { idProduto: 1, qtd: 2 },  // Ex: 2x Canelone 4 Queijos
+            { idProduto: 10, qtd: 1 }  // Ex: 1x Molho Branco
+        ],
+        tipoDesconto: 'RS',
+        valorDesconto: 0,
+        taxaEntrega: 5.00,
+        tipoEntrega: 'Delivery',
+        plataforma: 'WhatsApp',
+        pagamento: 'PIX',
+        status: 'Pendente Pagamento',
+        obs: 'Entregar na porta dos fundos.'
+    };
+
+    // 2. Salva essa venda na memória do navegador (localStorage)
+    localStorage.setItem('vendaEmEdicao', JSON.stringify(vendaSimulada));
+
+    // 3. Redireciona o usuário para a tela de Alterar Venda
+    window.location.href = 'alterar-venda.html';
+}
+// #endregion
+
+
 
 /* 
 ============================================================================================================================== 
@@ -732,6 +985,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof formatarCoresStatus === 'function') formatarCoresStatus();
     if (typeof verificarEstoqueCores === 'function') verificarEstoqueCores();
     if (typeof configurarFiltrosPeriodo === 'function') configurarFiltrosPeriodo();
+
+    // Funções Tela: Vendas
+    if (typeof aplicarCoresStatusVendas === 'function') aplicarCoresStatusVendas();
+    if (typeof configurarFiltrosVendas === 'function') configurarFiltrosVendas();
+    if (typeof configurarModalConsumoProprio === 'function') configurarModalConsumoProprio();
 
     // Funções Tela: Clientes
     if (typeof configurarBuscaEContadorClientes === 'function') configurarBuscaEContadorClientes();

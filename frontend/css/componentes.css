@@ -291,6 +291,53 @@
 /* #endregion */
 
 
+/* 
+============================================================================================================================== 
+        PERSONALIZAÇÃO DAS TABELAS
+============================================================================================================================== 
+*/
+/* #region */
+/* 1. Container envelopador para dar a borda externa com cantos arredondados */
+.tabela-container {
+    border: 1px solid #E0E1E5;
+    border-radius: 8px;
+    overflow: hidden; /* Esse é o truque: corta as pontas da tabela para respeitar o arredondamento */
+    background-color: #FFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Uma sombrinha quase invisível para dar profundidade */
+}
+
+/* 2. Reset para a tabela não estourar o container */
+.tabela-custom {
+    width: 100%;
+    margin-bottom: 0; /* Remove margem padrão do Bootstrap */
+    border-collapse: collapse;
+}
+
+/* 3. Estilo do Cabeçalho (thead) */
+.tabela-custom thead th {
+    background-color: #F9FAFB; /* O fundo cinza sutil para destacar */
+    text-transform: uppercase; /* Deixa as letras maiúsculas para dar cara de sistema */
+    letter-spacing: 0.05em;
+    padding: 16px;
+    border-bottom: 2px solid #E0E1E5; /* Borda um pouco mais grossa para separar bem do conteúdo */
+}
+
+/* 4. Estilo do Corpo da Tabela (tbody) */
+.tabela-custom tbody td {
+    vertical-align: middle;
+    border-bottom: 1px solid #E0E1E5; /* Linha divisória entre os itens */
+}
+
+/* 5. Remove a linha do último item para não encavalar com a borda do container */
+.tabela-custom tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Opcional: Efeito hover suave ao passar o mouse na linha */
+.tabela-custom tbody tr:hover {
+    background-color: #F3F4F6;
+}
+/* #endregion */
 
 /* 
 ============================================================================================================================== 

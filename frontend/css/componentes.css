@@ -327,6 +327,213 @@
 
 /* 
 ============================================================================================================================== 
+        TELA: LOGIN
+============================================================================================================================== 
+*/
+/* #region */
+/* --- BANNER MOBILE --- */
+.banner-login {
+    background-image: url('../assets/images/banner-sem-logo-mobile.png'); 
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 340px; 
+    flex: 0 0 340px; 
+}
+
+.texto-sobreposto {
+    position: relative;
+    z-index: 2; 
+}
+
+.logo-banner {
+    width: 96px !important;
+    height: auto !important; 
+}
+
+.titulo-banner {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.625rem; /* 26px */
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.subtitulo-banner {
+    color: rgba(255, 255, 255, 0.72);
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem; /* 13px */
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.texto-sistema {
+    color: rgba(255, 255, 255, 0.50);
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem; /* 14px */
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.divisor-banner {
+    width: 60px;
+    height: 2px;
+    border-radius: 1px;
+    background: rgba(255, 255, 255, 0.30);
+}
+
+.texto-boas-vindas {
+    color: rgba(255, 255, 255, 0.60);
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem; /* 15px */
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+/* --- FORMULÁRIO (FUNDO, CAIXA E EFEITO SOBREPOSIÇÃO) --- */
+.bg-fundo-form {
+    background-color: #FFF; 
+    margin-top: -40px; /* Efeito de sobrepor o banner no mobile */
+    border-radius: 28px 28px 0 0;
+    position: relative;
+    z-index: 10;
+}
+
+.cartao-login {
+    width: 100%;
+    background: transparent; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+}
+
+.bloco-form { 
+    width: 334px; 
+}
+
+/* --- FORMULÁRIO (TEXTOS E LOGO) --- */
+.logo-form {
+    width: 65px;
+    height: 40px;
+    aspect-ratio: 13 / 8;
+    object-fit: contain;
+}
+
+.titulo-login {
+    color: #111827;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem; /* 24px */
+    font-weight: 800;
+    line-height: normal;
+    margin-bottom: 4px;
+}
+
+.subtitulo-login {
+    color: #9CA3AC;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem; /* 13px */
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 32px;
+}
+
+.label-login {
+    color: #4B5563;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* --- FORMULÁRIO (INPUTS) --- */
+.input-login {
+    height: 50px;
+    padding: 15px 48px 15px 16px;
+    border-radius: 10px;
+    border: 1.5px solid #E0E1E5;
+    background: #F3F4F6;
+    color: #111827;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem; /* 14px */
+}
+
+.input-login:focus {
+    outline: none;
+    border-color: #9A1006;
+    background: #FFF;
+}
+
+/* --- FORMULÁRIO (BOTÕES E LINKS) --- */
+.link-senha {
+    color: #9A1006;
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem; /* 13px */
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+    display: block;
+}
+
+.link-senha:hover { 
+    text-decoration: underline; 
+}
+
+.btn-login {
+    display: flex;
+    height: 52px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #9A1006;
+    box-shadow: 0 4px 16px 0 rgba(154, 16, 6, 0.40);
+    color: #FFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem; /* 16px */
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.rodape-login {
+    color: #9CA3AC;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6875rem; /* 11px */
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 32px;
+}
+
+.btn-mostrar-senha {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+/* #endregion */
+
+
+/* 
+============================================================================================================================== 
         TELA: DASHBOARD
 ============================================================================================================================== 
 */
@@ -1540,6 +1747,7 @@
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
+
 /* Estilo para quando o botão for selecionado */
 .btn-filtro-evo.active, 
 .btn-filtro-evo:hover {
@@ -1772,6 +1980,42 @@
 
 /* 
 ============================================================================================================================== 
+        MEDIA (MIN-WIDTH:  768PX)
+============================================================================================================================== 
+*/
+/* #region - TELA: LOGIN */
+@media (min-width: 768px) {
+    
+    .bg-fundo-form {
+        background-color: #F3F4F6; 
+        margin-top: 0;
+        border-radius: 0;
+    }
+
+    .cartao-login {
+        width: 440px;
+        height: 514px;
+        flex-shrink: 0;
+        border-radius: 16px;
+        background: #FFF;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04), 0 8px 40px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    /* Aumentos do formulário no Tablet */
+    .logo-form { width: 80px; }
+    .titulo-login { font-size: 1.625rem; } /* 26px */
+    .subtitulo-login { font-size: 0.875rem; } /* 14px */
+
+    /* Aumentos do banner no Tablet */
+    .logo-banner { width: 120px !important; }
+    .titulo-banner { font-size: 2rem; } /* 32px */
+    .subtitulo-banner { font-size: 1rem; } /* 16px */
+}
+/* #endregion */
+
+
+/* 
+============================================================================================================================== 
         MEDIA (MAX-WIDTH:  991PX)
 ============================================================================================================================== 
 */
@@ -1886,6 +2130,72 @@
     }
     /* O .login-box mantém as configurações de 440x514 e fica flutuando no meio */
 
+}
+/* #endregion */
+
+
+/* 
+============================================================================================================================== 
+        MEDIA (MIN-WIDTH:  992PX)
+============================================================================================================================== 
+*/
+/* #region - TELA: LOGIN */
+@media (min-width: 992px) {
+    
+    /* --- AJUSTES DO BANNER --- */
+    .banner-login {
+        background-image: url('../assets/images/banner-sem-logo-desktop.png');
+        height: 100vh;
+        width: 520px;
+        flex: 0 0 520px; 
+    }
+
+    .logo-banner {
+        width: 180px !important; 
+    }
+
+    .titulo-banner {
+        font-size: 2.625rem; /* 42px */
+    }
+
+    .subtitulo-banner {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1.125rem; /* 18px */
+    }
+
+    /* --- AJUSTES DO FORMULÁRIO --- */
+    .bloco-form { 
+        width: 360px; 
+    }
+
+    .titulo-login { 
+        font-size: 1.625rem; /* 26px */
+    }
+
+    .subtitulo-login { 
+        font-size: 0.875rem; /* 14px */
+    }
+
+    .label-login { 
+        font-size: 0.8125rem; /* 13px */
+    }
+
+    .input-login { 
+        height: 52px; 
+    }
+
+    .link-senha { 
+        font-size: 0.875rem; /* 14px */
+    }
+
+    .btn-login {
+        height: 54px;
+        box-shadow: 0 4px 16px 0 rgba(154, 16, 6, 0.35);
+    }
+
+    .rodape-login { 
+        font-size: 0.75rem; /* 12px */
+    }
 }
 /* #endregion */
 
